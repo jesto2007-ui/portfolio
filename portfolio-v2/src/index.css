@@ -1,0 +1,177 @@
+@import "@fontsource/space-grotesk/400.css";
+@import "@fontsource/space-grotesk/500.css";
+@import "@fontsource/space-grotesk/600.css";
+@import "@fontsource/space-grotesk/700.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark theme - portfolio specific */
+    --background: 0 0% 3%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Bold red accent */
+    --primary: 355 80% 56%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Darker red for hover states */
+    --primary-hover: 355 80% 48%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 355 80% 56%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 355 80% 56%;
+
+    --radius: 0.5rem;
+
+    /* Custom portfolio tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(355 80% 56%), hsl(355 80% 40%));
+    --gradient-dark: linear-gradient(180deg, hsl(0 0% 3%), hsl(0 0% 6%));
+    --shadow-glow: 0 0 40px hsl(355 80% 56% / 0.3);
+    --shadow-card: 0 10px 40px hsl(0 0% 0% / 0.5);
+
+    /* Sidebar - kept for compatibility */
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 355 80% 56%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 355 80% 56%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .hero-title {
+    @apply text-6xl md:text-8xl lg:text-9xl font-heading font-bold tracking-tighter leading-none;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight;
+  }
+
+  .section-subtitle {
+    @apply text-xl md:text-2xl text-muted-foreground font-body;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-primary text-primary-foreground font-heading font-semibold 
+           hover:bg-[hsl(var(--primary-hover))] transition-all duration-300
+           border-2 border-primary hover:shadow-[var(--shadow-glow)];
+  }
+
+  .btn-outline {
+    @apply px-6 py-3 bg-transparent text-foreground font-heading font-semibold 
+           border-2 border-foreground hover:bg-foreground hover:text-background 
+           transition-all duration-300;
+  }
+
+  .btn-accent {
+    @apply px-6 py-3 bg-primary text-primary-foreground font-heading font-semibold
+           hover:bg-[hsl(var(--primary-hover))] transition-all duration-300
+           shadow-[var(--shadow-glow)] border-0;
+  }
+
+  .card-dark {
+    @apply bg-card border border-border rounded-lg p-6 shadow-[var(--shadow-card)]
+           hover:border-primary/50 transition-all duration-300;
+  }
+
+  .card-red {
+    @apply bg-primary text-primary-foreground p-6 rounded-lg;
+  }
+
+  .skill-tag {
+    @apply px-4 py-2 bg-secondary text-foreground font-body text-sm 
+           border border-border rounded-sm hover:border-primary/50 transition-colors;
+  }
+
+  .torn-paper-top {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60'%3E%3Cpath fill='%23fafafa' d='M0,30 Q80,10 160,25 T320,20 T480,35 T640,15 T800,30 T960,20 T1120,35 T1280,25 T1440,30 L1440,60 L0,60 Z'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-position: bottom;
+  }
+
+  .torn-paper-bottom {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60'%3E%3Cpath fill='%23fafafa' d='M0,30 Q80,50 160,35 T320,40 T480,25 T640,45 T800,30 T960,40 T1120,25 T1280,35 T1440,30 L1440,0 L0,0 Z'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-position: top;
+  }
+
+  .red-accent-line {
+    @apply h-1 w-20 bg-primary;
+  }
+
+  .glow-effect {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .text-gradient-animate {
+    @apply bg-clip-text text-transparent bg-[length:200%_200%] animate-gradient-shift;
+    background-image: linear-gradient(
+      90deg,
+      hsl(355 80% 56%),
+      hsl(0 0% 98%),
+      hsl(355 80% 56%)
+    );
+  }
+
+  .magnetic-btn {
+    @apply transition-transform duration-200 ease-out;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+*{
+  scroll-behavior: smooth;
+}
